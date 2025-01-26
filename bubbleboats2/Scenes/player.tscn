@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnmhyc7b58i58"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_oga66"]
+[ext_resource type="Texture2D" uid="uid://dnt54qi1it2nv" path="res://Sprites/temp_player.png" id="2_8pndu"]
+[ext_resource type="Script" path="res://Scripts/TileDetection.gd" id="3_jo4lu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5k08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgsw4"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu1jb"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_oga66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_f5k08")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8pndu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TerrainDetector" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("3_jo4lu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
+shape = SubResource("RectangleShape2D_kgsw4")
+
+[node name="ObstacleDetector" type="Area2D" parent="."]
+script = ExtResource("3_jo4lu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetector"]
+shape = SubResource("RectangleShape2D_nu1jb")
+
+[connection signal="body_shape_entered" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_entered"]
+[connection signal="body_shape_entered" from="ObstacleDetector" to="ObstacleDetector" method="_on_body_shape_entered"]

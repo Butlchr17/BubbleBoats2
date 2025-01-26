@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2jdvt4lt5vt2"]
+
+[ext_resource type="Texture2D" uid="uid://bysjf8tyuu7c3" path="res://Sprites/tempAISprite.png" id="1_5xrpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v313o"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_v313o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5xrpo")
