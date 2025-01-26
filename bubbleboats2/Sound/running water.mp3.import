@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8bj6515xgb5s"
+path="res://.godot/imported/running water.mp3-7279f0a2c23bb236398d4e0f8b8e6f87.mp3str"
+
+[deps]
+
+source_file="res://Sound/running water.mp3"
+dest_files=["res://.godot/imported/running water.mp3-7279f0a2c23bb236398d4e0f8b8e6f87.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

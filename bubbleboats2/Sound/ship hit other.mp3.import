@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2o0qbu5axkwd"
+path="res://.godot/imported/ship hit other.mp3-ab000b1d3def75ede8a1b4eeb44e62e4.mp3str"
+
+[deps]
+
+source_file="res://Sound/ship hit other.mp3"
+dest_files=["res://.godot/imported/ship hit other.mp3-ab000b1d3def75ede8a1b4eeb44e62e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
