@@ -8,6 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1vi1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xuqpi"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27cx1"]
+radius = 6.25
+height = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfrwe"]
 
@@ -19,6 +22,11 @@ script = ExtResource("1_0nvrl")
 bullet_scene = ExtResource("2_bt8vs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(1, -2)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CapsuleShape2D_27cx1")
+debug_color = Color(1, 0, 0, 0.419608)
 shape = SubResource("RectangleShape2D_s1vi1")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
