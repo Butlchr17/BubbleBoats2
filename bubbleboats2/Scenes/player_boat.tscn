@@ -21,6 +21,7 @@ shape = SubResource("RectangleShape2D_f5k08")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
+scale = Vector2(3, 3)
 texture = ExtResource("2_uln3y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -39,11 +40,12 @@ script = ExtResource("3_lma8o")
 shape = SubResource("RectangleShape2D_w0ie2")
 
 [node name="Turret" type="Node2D" parent="."]
+position = Vector2(0, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="Turret"]
 rotation = 3.14159
+scale = Vector2(3, 3)
 texture = ExtResource("4_seitt")
-offset = Vector2(-8, 0)
 
 [connection signal="body_shape_entered" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_entered"]
 [connection signal="body_shape_entered" from="ObstacleDetector" to="ObstacleDetector" method="_on_body_shape_entered"]
