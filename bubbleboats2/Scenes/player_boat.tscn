@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxff4xrwww02l"]
+[gd_scene load_steps=8 format=3 uid="uid://bxff4xrwww02l"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_p3ulj"]
-[ext_resource type="Texture2D" uid="uid://dnt54qi1it2nv" path="res://Sprites/temp_player.png" id="2_i74ii"]
+[ext_resource type="Texture2D" uid="uid://bgegdgc484xag" path="res://Sprites/Boat_5.png" id="2_uln3y"]
 [ext_resource type="Script" path="res://Scripts/TileDetection.gd" id="3_lma8o"]
+[ext_resource type="Texture2D" uid="uid://ddvjxe868gwu0" path="res://Sprites/cannon.png" id="4_seitt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5k08"]
 
@@ -19,7 +20,8 @@ scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_f5k08")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i74ii")
+rotation = 1.5708
+texture = ExtResource("2_uln3y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -35,6 +37,13 @@ script = ExtResource("3_lma8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetector"]
 shape = SubResource("RectangleShape2D_w0ie2")
+
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Turret"]
+rotation = 3.14159
+texture = ExtResource("4_seitt")
+offset = Vector2(-8, 0)
 
 [connection signal="body_shape_entered" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_entered"]
 [connection signal="body_shape_entered" from="ObstacleDetector" to="ObstacleDetector" method="_on_body_shape_entered"]
