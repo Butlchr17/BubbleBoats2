@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyn7e2bn8nlkc"]
+[gd_scene load_steps=9 format=3 uid="uid://cyn7e2bn8nlkc"]
 
-[ext_resource type="Texture2D" uid="uid://ckdwaxygvwtsr" path="res://Sprites/Duck_2.png" id="1_r8kqm"]
+[ext_resource type="Script" path="res://Scripts/AICharacterMovement.gd" id="1_0nvrl"]
+[ext_resource type="Texture2D" uid="uid://cy80wimu8nrh4" path="res://Sprites/Duck body.png" id="1_ikbnu"]
+[ext_resource type="Texture2D" uid="uid://cbt1qr8u8obtr" path="res://Sprites/Duck head.png" id="2_1w6ni"]
+[ext_resource type="PackedScene" uid="uid://bvv03n2jq8duc" path="res://Scenes/projectile.tscn" id="2_bt8vs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v313o"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1vi1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xuqpi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfrwe"]
 
@@ -10,32 +15,56 @@
 
 [node name="AICharacter" type="CharacterBody2D"]
 position = Vector2(97, 0)
+script = ExtResource("1_0nvrl")
+bullet_scene = ExtResource("2_bt8vs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.6, 1.6)
-shape = SubResource("RectangleShape2D_v313o")
+shape = SubResource("RectangleShape2D_s1vi1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 position = Vector2(1, 1)
 rotation = 1.5708
-texture = ExtResource("1_r8kqm")
+scale = Vector2(1, 1)
+texture = ExtResource("1_ikbnu")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2048
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_xuqpi")
 
 [node name="ShootArea" type="Area2D" parent="."]
-scale = Vector2(10, 10)
+scale = Vector2(15, 15)
 disable_mode = 2
 
 [node name="ShootBox" type="CollisionShape2D" parent="ShootArea"]
 shape = SubResource("CircleShape2D_rfrwe")
 
 [node name="FollowArea" type="Area2D" parent="."]
-scale = Vector2(25, 24.878)
+scale = Vector2(30.0452, 29.854)
 disable_mode = 2
 
 [node name="FollowBox" type="CollisionShape2D" parent="FollowArea"]
 shape = SubResource("CircleShape2D_rfrwe")
 
 [node name="MoveAgainArea" type="Area2D" parent="."]
-scale = Vector2(12, 12)
+scale = Vector2(17, 17)
 
 [node name="MoveAgainBox" type="CollisionShape2D" parent="MoveAgainArea"]
 shape = SubResource("CircleShape2D_2vxgv")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1, -1)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_1w6ni")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="ShootArea" to="." method="_on_shoot_area_body_entered"]
+[connection signal="body_exited" from="ShootArea" to="." method="_on_shoot_area_body_exited"]
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
+[connection signal="body_entered" from="MoveAgainArea" to="." method="_on_move_again_area_body_entered"]
+[connection signal="body_exited" from="MoveAgainArea" to="." method="_on_move_again_area_body_exited"]
