@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var move_speed: float = 100
 
 # Reference to the player character
-@onready var player = $PlayerBoat
+var player
 
 # Flags for range detection
 var player_in_range: bool = false
@@ -12,6 +12,7 @@ var player_in_shooting_range: bool = false
 
 func _ready():
 	# Look for the player node in the scene
+	player = $PlayerBoat
 	player = get_parent().get_node_or_null("PlayerBoat")  # Replace with the actual path to your player node
 	if not player:
 		print("Player not found!")
