@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-@export var speed = 150           # Acceleration speed
+@export var speed = 100           # Acceleration speed
 @export var rotation_speed = 0.5 # Rotation speed
 @export var drag = 0.1           # Base drag to slow down over time
 @export var smoothing = 0.03     # Smoothing factor for input blending
-@export var max_velocity = 200   # Maximum speed for the boat
+@export var max_velocity = 180
+   # Maximum speed for the boat
 @export var turret_angle_limit = 90.0 # Maximum turret rotation from the boat's forward direction
 @export var bullet_scene: PackedScene  # Drag and drop your bullet scene here
 
