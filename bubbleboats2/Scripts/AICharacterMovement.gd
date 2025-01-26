@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Speed of the AI character
-@export var move_speed: float = 200.0
+@export var move_speed: float = 100
 
 # Reference to the player character
 @onready var player = $PlayerBoat
