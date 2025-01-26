@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdlleija2pdki"]
+
+[ext_resource type="Texture2D" uid="uid://bysjf8tyuu7c3" path="res://tempAISprite.png" id="1_3sv21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v313o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfrwe"]
+
+[node name="AICharacter" type="CharacterBody2D"]
+position = Vector2(97, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_v313o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("1_3sv21")
+
+[node name="ShootArea" type="Area2D" parent="."]
+scale = Vector2(10, 10)
+disable_mode = 2
+
+[node name="ShootBox" type="CollisionShape2D" parent="ShootArea"]
+shape = SubResource("CircleShape2D_rfrwe")
+
+[node name="FollowArea" type="Area2D" parent="."]
+scale = Vector2(20, 20)
+disable_mode = 2
+
+[node name="FollowBox" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_rfrwe")
