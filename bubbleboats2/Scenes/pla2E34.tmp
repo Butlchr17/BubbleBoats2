@@ -19,6 +19,14 @@ size = Vector2(32, 32)
 
 [node name="PlayerBoat" type="CharacterBody2D"]
 script = ExtResource("1_p3ulj")
+score = null
+player_health = null
+speed = null
+rotation_speed = null
+drag = null
+smoothing = null
+max_velocity = null
+turret_angle_limit = null
 bullet_scene = ExtResource("2_75hud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

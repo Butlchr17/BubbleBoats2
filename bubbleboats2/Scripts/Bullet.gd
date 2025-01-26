@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var speed = 250  # Speed of the bullet
+@export var is_player_bullet = false
 
 func _ready():
 	# Disable gravity for the bullet

@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var score = 0
+@onready var scoreboard = $Camera2D/Scoreboard
+@export var player_health = 3
 @export var speed = 100           # Acceleration speed
 @export var rotation_speed = 0.5 # Rotation speed
 @export var drag = 0.1           # Base drag to slow down over time
@@ -55,15 +58,21 @@ func shoot():
 
 	# Instantiate the bullet
 	var bullet = bullet_scene.instantiate()
+	bullet.is_player_bullet = true
+
+	bullet.add_to_group("player_bullet")
 
 	# Set the bullet's position and rotation to match the turret
-	bullet.global_position = $Turret.global_position
+	bullet.global_position = $Turret.global_position + Vector2( 75, 75)
 	bullet.rotation = $Turret.global_rotation
 
 	# Add the bullet to the current scene
 	get_tree().current_scene.add_child(bullet)
 
 func _physics_process(_delta: float) -> void:
+	
+	scoreboard.text =  "score: " + str(score)
+	
 	get_input()
 
 	# Add momentum by keeping the velocity even when there's no input
@@ -85,3 +94,19 @@ func _physics_process(_delta: float) -> void:
 
 	# Move the boat
 	move_and_slide()
+
+
+func _on_hitbox_player_body_entered(body):
+	if body.is_in_group("ai_bullet"):
+		print("Hit!")
+		player_hit()
+
+
+func player_hit():
+	print("player hit")
+	player_health-=1
+	if (player_health == 0):
+		queue_free()
+		get_tree().quit()
+		print("game over")
+		

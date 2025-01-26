@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://clomlp5ovvgw3"]
+[gd_scene load_steps=10 format=4 uid="uid://clomlp5ovvgw3"]
 
 [ext_resource type="PackedScene" uid="uid://bxff4xrwww02l" path="res://Scenes/player_boat.tscn" id="1_vweqb"]
 [ext_resource type="PackedScene" uid="uid://cyn7e2bn8nlkc" path="res://Scenes/ai_character.tscn" id="3_5mvr8"]
 [ext_resource type="Texture2D" uid="uid://bfxhtif3rd05m" path="res://Sprites/TempTiles.png" id="3_mtqth"]
 [ext_resource type="Texture2D" uid="uid://c41l4ut3dtcji" path="res://Sprites/Water_tile.png" id="3_s2st7"]
-[ext_resource type="Script" path="res://Scripts/AICharacterMovement.gd" id="4_u5dsn"]
+[ext_resource type="Texture2D" uid="uid://0oaw7vajn166" path="res://Sprites/Bubble animation.png" id="4_g5e7a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7g0i5"]
 texture = ExtResource("3_mtqth")
@@ -27,6 +27,15 @@ texture_region_size = Vector2i(32, 32)
 0:0/animation_frame_4/duration = 0.2
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kwcwm"]
+texture = ExtResource("4_g5e7a")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_evx1t"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
@@ -35,12 +44,14 @@ custom_data_layer_0/name = "Terrain"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_7g0i5")
 sources/1 = SubResource("TileSetAtlasSource_65gwk")
+sources/2 = SubResource("TileSetAtlasSource_kwcwm")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-73, -75)
 
 [node name="PlayerBoat" parent="." instance=ExtResource("1_vweqb")]
 
-[node name="TerrainDetector" parent="PlayerBoat" index="3" node_paths=PackedStringArray("Tilemap")]
+[node name="TerrainDetector" parent="PlayerBoat" index="4" node_paths=PackedStringArray("Tilemap")]
 Tilemap = NodePath("../../MapLayer")
 terrain_custom_data_name = "Terrain"
 terrain_names = ["Water"]
@@ -51,14 +62,5 @@ tile_map_data = PackedByteArray("AAD6//z/AQAAAAAAAAD7//z/AQAAAAAAAAD8//z/AQAAAAA
 tile_set = SubResource("TileSet_evx1t")
 
 [node name="AICharacter" parent="." instance=ExtResource("3_5mvr8")]
-script = ExtResource("4_u5dsn")
-
-[connection signal="body_entered" from="AICharacter/ShootArea" to="AICharacter" method="_on_shoot_area_body_entered"]
-[connection signal="body_exited" from="AICharacter/ShootArea" to="AICharacter" method="_on_shoot_area_body_exited"]
-[connection signal="body_entered" from="AICharacter/FollowArea" to="AICharacter" method="_on_follow_area_body_entered"]
-[connection signal="body_exited" from="AICharacter/FollowArea" to="AICharacter" method="_on_follow_area_body_exited"]
-[connection signal="body_entered" from="AICharacter/MoveAgainArea" to="AICharacter" method="_on_move_again_area_body_entered"]
-[connection signal="body_exited" from="AICharacter/MoveAgainArea" to="AICharacter" method="_on_move_again_area_body_exited"]
 
 [editable path="PlayerBoat"]
-[editable path="AICharacter"]

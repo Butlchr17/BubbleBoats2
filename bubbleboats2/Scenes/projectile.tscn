@@ -1,21 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvv03n2jq8duc"]
+[gd_scene load_steps=9 format=3 uid="uid://bvv03n2jq8duc"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_niekt"]
-[ext_resource type="Texture2D" uid="uid://cjdlcrlngkuus" path="res://Sprites/TempWallTile.png" id="1_rord8"]
+[ext_resource type="Texture2D" uid="uid://dkbns7ycbk8sq" path="res://Sprites/Bubble particle 1.png" id="2_64jt3"]
+[ext_resource type="Texture2D" uid="uid://d1ay3twc05j5h" path="res://Sprites/Bubble particle 2.png" id="3_by3o0"]
+[ext_resource type="Texture2D" uid="uid://bmaowev63ncir" path="res://Sprites/Bubble particle 3.png" id="4_0vw7r"]
+[ext_resource type="Texture2D" uid="uid://swywwdner67i" path="res://Sprites/Bubble particle 4.png" id="5_8rhfg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0eee"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6snw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_64jt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_by3o0")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_0vw7r")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_8rhfg")
+}],
+"loop": false,
+"name": &"Bubble Blow",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfj4x"]
+
 [node name="Projectile" type="RigidBody2D"]
+collision_layer = 2048
+collision_mask = 0
 script = ExtResource("1_niekt")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+scale = Vector2(2.5, 2.5)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_a0eee")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_rord8")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_m6snw")
+animation = &"Bubble Blow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wfj4x")
