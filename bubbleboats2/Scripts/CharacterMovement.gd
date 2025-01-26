@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var smoothing = 0.03     # Smoothing factor for input blending
 @export var max_velocity = 200   # Maximum speed for the boat
 @export var turret_angle_limit = 90.0 # Maximum turret rotation from the boat's forward direction
+@export var bullet_scene: PackedScene  # Drag and drop your bullet scene here
 
 var target_velocity = Vector2.ZERO  # Desired velocity
 var current_velocity = Vector2.ZERO # Current velocity (for momentum)
@@ -25,6 +26,10 @@ func get_input():
 	# Turret rotation (aims at the mouse position within the angle limit)
 	update_turret_rotation()
 
+	# Handle shooting when left mouse button is clicked
+	if Input.is_action_just_pressed("Fire"):
+		shoot()
+
 func update_turret_rotation():
 	# Get the angle to the mouse relative to the turret's position
 	var target_angle = (get_global_mouse_position() - global_position).angle()
@@ -40,6 +45,22 @@ func update_turret_rotation():
 
 	# Set the turret's rotation relative to the boat, applying the offset back
 	$Turret.rotation = relative_angle - deg_to_rad(90)
+
+func shoot():
+	# Ensure the bullet scene is set
+	if bullet_scene == null:
+		print("Bullet scene not set!")
+		return
+
+	# Instantiate the bullet
+	var bullet = bullet_scene.instantiate()
+
+	# Set the bullet's position and rotation to match the turret
+	bullet.global_position = $Turret.global_position
+	bullet.rotation = $Turret.global_rotation
+
+	# Add the bullet to the current scene
+	get_tree().current_scene.add_child(bullet)
 
 func _physics_process(_delta: float) -> void:
 	get_input()

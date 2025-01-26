@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvv03n2jq8duc"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_niekt"]
+[ext_resource type="Texture2D" uid="uid://cjdlcrlngkuus" path="res://Sprites/TempWallTile.png" id="1_rord8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0eee"]
+
+[node name="Projectile" type="RigidBody2D"]
+script = ExtResource("1_niekt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a0eee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rord8")
