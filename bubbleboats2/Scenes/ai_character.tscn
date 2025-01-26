@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyn7e2bn8nlkc"]
 
-[ext_resource type="Texture2D" uid="uid://bysjf8tyuu7c3" path="res://Sprites/tempAISprite.png" id="1_3sv21"]
+[ext_resource type="Texture2D" uid="uid://ckdwaxygvwtsr" path="res://Sprites/Duck_2.png" id="1_r8kqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v313o"]
 
@@ -15,7 +15,9 @@ shape = SubResource("RectangleShape2D_v313o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 1)
-texture = ExtResource("1_3sv21")
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_r8kqm")
 
 [node name="ShootArea" type="Area2D" parent="."]
 scale = Vector2(10, 10)
