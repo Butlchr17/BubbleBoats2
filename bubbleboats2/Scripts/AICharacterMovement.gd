@@ -4,13 +4,14 @@ extends CharacterBody2D
 @export var move_speed: float = 100
 
 # Reference to the player character
-@onready var player = $PlayerBoat
+var player
 
 # Flag to check if the player is in range
 var player_in_range: bool = false
 
 func _ready():
 	# Look for the player node in the scene
+	player = $PlayerBoat
 	player = get_parent().get_node_or_null("PlayerBoat")  # Replace with the actual path to your player node
 	if not player:
 		print("Player not found!")
@@ -21,12 +22,12 @@ func _ready():
 		detection_zone.connect("body_entered", Callable(self, "_on_follow_area_body_entered"))
 		detection_zone.connect("body_exited", Callable(self, "_on_follow_area_body_exited"))
 
-func _physics_process(delta):
+func _physics_process(_delta: float) -> void:
 	if player and player_in_range:
-		print("Player in range, moving toward player...")
+		#print("Player in range, moving toward player...")
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * move_speed
-		print("Velocity applied:", velocity)
+		#print("Velocity applied:", velocity)
 		move_and_slide()
 
 # Signal handlers for Area2D
