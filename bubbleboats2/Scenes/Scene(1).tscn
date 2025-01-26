@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://clomlp5ovvgw3"]
+[gd_scene load_steps=12 format=4 uid="uid://clomlp5ovvgw3"]
 
 [ext_resource type="PackedScene" uid="uid://bxff4xrwww02l" path="res://Scenes/player_boat.tscn" id="1_vweqb"]
 [ext_resource type="PackedScene" uid="uid://cyn7e2bn8nlkc" path="res://Scenes/ai_character.tscn" id="3_5mvr8"]
 [ext_resource type="Texture2D" uid="uid://bfxhtif3rd05m" path="res://Sprites/TempTiles.png" id="3_mtqth"]
+[ext_resource type="Texture2D" uid="uid://c41l4ut3dtcji" path="res://Sprites/Water_tile.png" id="3_s2st7"]
 [ext_resource type="Script" path="res://Scripts/AICharacterMovement.gd" id="4_u5dsn"]
 [ext_resource type="Texture2D" uid="uid://cjdlcrlngkuus" path="res://Sprites/TempWallTile.png" id="5_5ebj0"]
 
@@ -13,8 +14,12 @@ texture = ExtResource("3_mtqth")
 2:0/0 = 0
 3:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_65gwk"]
+texture = ExtResource("3_s2st7")
+
 [sub_resource type="TileSet" id="TileSet_evx1t"]
 sources/0 = SubResource("TileSetAtlasSource_7g0i5")
+sources/1 = SubResource("TileSetAtlasSource_65gwk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqfg0"]
 texture = ExtResource("5_5ebj0")

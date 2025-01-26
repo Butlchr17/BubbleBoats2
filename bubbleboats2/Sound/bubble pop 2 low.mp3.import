@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgajvvo6y080w"
+path="res://.godot/imported/bubble pop 2 low.mp3-bce879843a82ff0eb3339747f465fcfe.mp3str"
+
+[deps]
+
+source_file="res://Sound/bubble pop 2 low.mp3"
+dest_files=["res://.godot/imported/bubble pop 2 low.mp3-bce879843a82ff0eb3339747f465fcfe.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
