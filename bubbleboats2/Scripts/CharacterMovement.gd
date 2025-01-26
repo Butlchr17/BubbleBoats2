@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var smoothing = 0.03     # Smoothing factor for input blending
 @export var max_velocity = 200   # Maximum speed for the boat
 @export var turret_angle_limit = 90.0 # Maximum turret rotation from the boat's forward direction
+@export var speed_boost= Vector2.ZERO
 
 var target_velocity = Vector2.ZERO  # Desired velocity
 var current_velocity = Vector2.ZERO # Current velocity (for momentum)
@@ -18,7 +19,7 @@ func get_input():
 	# Move forward/backward based on Up/Down keys
 	var input_direction = Input.get_axis("Down", "Up")
 	if input_direction != 0:
-		target_velocity = Vector2.UP.rotated(rotation) * input_direction * speed
+		target_velocity = (Vector2.UP.rotated(rotation) * input_direction * speed) + speed_boost
 	else:
 		target_velocity = Vector2.ZERO  # No input means no additional force applied
 
