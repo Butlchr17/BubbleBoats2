@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxff4xrwww02l"]
+[gd_scene load_steps=8 format=3 uid="uid://bxff4xrwww02l"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_p3ulj"]
+[ext_resource type="PackedScene" uid="uid://bvv03n2jq8duc" path="res://Scenes/projectile.tscn" id="2_75hud"]
 [ext_resource type="Texture2D" uid="uid://bgegdgc484xag" path="res://Sprites/Boat_5.png" id="2_uln3y"]
 [ext_resource type="Script" path="res://Scripts/TileDetection.gd" id="3_lma8o"]
 [ext_resource type="Texture2D" uid="uid://ddvjxe868gwu0" path="res://Sprites/cannon.png" id="4_seitt"]
@@ -12,6 +13,7 @@ size = Vector2(32, 32)
 
 [node name="PlayerBoat" type="CharacterBody2D"]
 script = ExtResource("1_p3ulj")
+bullet_scene = ExtResource("2_75hud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.6, 1.6)
@@ -19,10 +21,10 @@ shape = SubResource("RectangleShape2D_f5k08")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(3, 3)
 texture = ExtResource("2_uln3y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
 [node name="TerrainDetector" type="Area2D" parent="."]
 collision_layer = 2
@@ -33,11 +35,10 @@ script = ExtResource("3_lma8o")
 shape = SubResource("RectangleShape2D_i6jt5")
 
 [node name="Turret" type="Node2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Turret"]
 rotation = 3.14159
-scale = Vector2(3, 3)
 texture = ExtResource("4_seitt")
 
 [connection signal="body_shape_entered" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_entered"]

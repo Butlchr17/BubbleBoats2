@@ -57,8 +57,6 @@ script = ExtResource("4_u5dsn")
 [connection signal="body_exited" from="AICharacter/ShootArea" to="AICharacter" method="_on_shoot_area_body_exited"]
 [connection signal="body_entered" from="AICharacter/FollowArea" to="AICharacter" method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="AICharacter/FollowArea" to="AICharacter" method="_on_follow_area_body_exited"]
-[connection signal="body_entered" from="AICharacter/MoveAgainArea" to="AICharacter" method="_on_move_again_area_body_entered"]
-[connection signal="body_exited" from="AICharacter/MoveAgainArea" to="AICharacter" method="_on_move_again_area_body_exited"]
 
 [editable path="PlayerBoat"]
 [editable path="AICharacter"]
