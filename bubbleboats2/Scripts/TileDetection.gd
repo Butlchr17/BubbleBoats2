@@ -65,13 +65,14 @@ func _do_tile_action_exit(tile_data_num: int):
 		1: #boost tile
 			player.speed_boost = Vector2.ZERO
 		2: #damage tile
+			
 			test_bool = true
 			#do nothing
 			pass
 			
 func _tile_damage(tile_data_num: int): 
 	if(test_bool == true && tile_data_num != last_tile_num):
-		get_tree().get_node("Node2D").get_node("PlayerBoat").player_health -= 1
+		player.player_health -= 1
 		test_bool = false
 		pass
 	#if(last_tile_num != 2):

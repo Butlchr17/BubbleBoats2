@@ -88,6 +88,11 @@ metadata/_edit_horizontal_guides_ = [-316.0]
 
 [node name="PlayerBoat" parent="." instance=ExtResource("1_vweqb")]
 
+[node name="TerrainDetector" parent="PlayerBoat" index="4" node_paths=PackedStringArray("Tilemap")]
+Tilemap = NodePath("../../MapLayer")
+terrain_custom_data_name = "Terrain"
+terrain_names = ["Water", "Speed Tile", "Damage Tile"]
+
 [node name="GameOverLabel2" type="Label" parent="PlayerBoat"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -108,3 +113,5 @@ tile_set = SubResource("TileSet_evx1t")
 stream = ExtResource("7_0jwa8")
 autoplay = true
 script = ExtResource("8_o3r3p")
+
+[editable path="PlayerBoat"]
