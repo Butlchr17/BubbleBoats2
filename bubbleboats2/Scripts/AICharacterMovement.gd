@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var smoothing = 0.03     # Smoothing factor for input blending
 @export var max_velocity = 180   # Maximum speed for the AI
 @export var follow_delay = 0.005  # Delay (in seconds) before the AI starts following the player
-@export var shoot_delay = 1.0 	# Delay (in seconds) before the AI can shoot at the player again.
+@export var shoot_delay = randf_range(0.7, 1.0) 	# Delay (in seconds) before the AI can shoot at the player again.
 
 @export var turret_angle_limit = 90.0 # Maximum turret rotation from the boat's forward direction
 @export var bullet_scene: PackedScene  # Drag and drop your bullet scene here

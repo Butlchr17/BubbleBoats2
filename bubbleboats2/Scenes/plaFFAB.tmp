@@ -11,7 +11,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5k08"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0ya5"]
-radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6jt5"]
 size = Vector2(32, 32)
@@ -30,7 +29,7 @@ shape = SubResource("RectangleShape2D_f5k08")
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox_player"]
-scale = Vector2(1.25, 2)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_b0ya5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -41,25 +40,10 @@ texture = ExtResource("2_uln3y")
 zoom = Vector2(4, 4)
 
 [node name="Scoreboard" type="Label" parent="Camera2D"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -50.0
-offset_right = -10.0
-offset_bottom = 23.0
-grow_horizontal = 0
-theme_override_colors/font_color = Color(0.760725, 0.183229, 0.736659, 1)
-theme_override_colors/font_shadow_color = Color(0.48939, 0.188858, 0.320503, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-
-[node name="PlayerHealth" type="Label" parent="Camera2D"]
-offset_left = 15.0
-offset_right = 55.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-horizontal_alignment = 2
+offset_left = 23.0
+offset_top = 12.0
+offset_right = 63.0
+offset_bottom = 35.0
 
 [node name="TerrainDetector" type="Area2D" parent="."]
 collision_layer = 2
@@ -82,7 +66,6 @@ collision_layer = 512
 collision_mask = 512
 script = ExtResource("6_1wiyy")
 ai_prefab = ExtResource("7_xtjlt")
-spawn_radius = 250.0
 player_area = NodePath(".")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -90,4 +73,3 @@ shape = SubResource("CircleShape2D_ww55k")
 
 [connection signal="body_entered" from="Hitbox_player" to="." method="_on_hitbox_player_body_entered"]
 [connection signal="body_shape_entered" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="TerrainDetector" to="TerrainDetector" method="_on_body_shape_exited"]

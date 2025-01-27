@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvv03n2jq8duc"]
+[gd_scene load_steps=10 format=3 uid="uid://bvv03n2jq8duc"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_niekt"]
 [ext_resource type="Texture2D" uid="uid://dkbns7ycbk8sq" path="res://Sprites/Bubble particle 1.png" id="2_64jt3"]
 [ext_resource type="Texture2D" uid="uid://d1ay3twc05j5h" path="res://Sprites/Bubble particle 2.png" id="3_by3o0"]
 [ext_resource type="Texture2D" uid="uid://bmaowev63ncir" path="res://Sprites/Bubble particle 3.png" id="4_0vw7r"]
 [ext_resource type="Texture2D" uid="uid://swywwdner67i" path="res://Sprites/Bubble particle 4.png" id="5_8rhfg"]
+[ext_resource type="AudioStream" uid="uid://cqy0vpvb76187" path="res://Sound/bubble pop 2 high.mp3" id="6_c5baa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0eee"]
 
@@ -51,3 +52,7 @@ animation = &"Bubble Blow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wfj4x")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_c5baa")
+volume_db = 24.0

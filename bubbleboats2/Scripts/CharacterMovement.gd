@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
 @export var score = 0
+@onready var player_health_UI = $Camera2D/PlayerHealth
 @onready var scoreboard = $Camera2D/Scoreboard
-@export var player_health = 3
+@onready var game_over_label = $GameOverLabel2
+@export var player_health = 5
 @export var speed = 100           # Acceleration speed
 @export var rotation_speed = 0.5 # Rotation speed
 @export var drag = 0.1           # Base drag to slow down over time
 @export var smoothing = 0.03     # Smoothing factor for input blending
 @export var max_velocity = 180
+@export var speed_boost = Vector2.ZERO
    # Maximum speed for the boat
 @export var turret_angle_limit = 90.0 # Maximum turret rotation from the boat's forward direction
 @export var bullet_scene: PackedScene  # Drag and drop your bullet scene here
@@ -23,7 +26,8 @@ func get_input():
 	# Move forward/backward based on Up/Down keys
 	var input_direction = Input.get_axis("Down", "Up")
 	if input_direction != 0:
-		target_velocity = Vector2.UP.rotated(rotation) * input_direction * speed
+		target_velocity = (Vector2.UP.rotated(rotation) * input_direction * speed) + speed_boost
+		
 	else:
 		target_velocity = Vector2.ZERO  # No input means no additional force applied
 
@@ -73,6 +77,8 @@ func _physics_process(_delta: float) -> void:
 	
 	scoreboard.text =  "score: " + str(score)
 	
+	player_health_UI.text = "Health: " + str(player_health)
+	
 	get_input()
 
 	# Add momentum by keeping the velocity even when there's no input
@@ -104,9 +110,25 @@ func _on_hitbox_player_body_entered(body):
 
 func player_hit():
 	print("player hit")
-	player_health-=1
-	if (player_health == 0):
-		queue_free()
-		get_tree().quit()
-		print("game over")
-		
+	player_health -= 1
+	if player_health == 0:
+		game_over()
+
+
+func game_over():
+	# Pause the game
+	get_tree().paused = true
+
+	# Display the score in the center of the screen
+	game_over_label.text = "Game Over! Your Score: " + str(score)
+	game_over_label.visible = true
+
+	# Wait for a few seconds before ending the game
+	await get_tree().create_timer(3.0).timeout
+
+	# End the game (queue_free or restart logic can go here)
+	queue_free()
+
+
+func _on_terrain_detector_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+	pass # Replace with function body.

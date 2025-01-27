@@ -33,9 +33,9 @@ func _ready():
 func _spawn_ai():
 	if not ai_prefab or not player_area_node:
 		return
-	for i in randf_range(1, 3):
+	for i in randf_range(1, 5):
 	# Get a random position around the player's Area2D
-		var player_position = player_area_node.global_position
+		var player_position = player_area_node.global_position + Vector2(75, 75)
 		var random_offset = Vector2(randf_range(-spawn_radius, spawn_radius), randf_range(-spawn_radius, spawn_radius))
 		var spawn_position = player_position + random_offset
 

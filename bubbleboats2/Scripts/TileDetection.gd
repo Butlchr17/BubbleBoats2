@@ -71,7 +71,7 @@ func _do_tile_action_exit(tile_data_num: int):
 			
 func _tile_damage(tile_data_num: int): 
 	if(test_bool == true && tile_data_num != last_tile_num):
-		print("-1 health")
+		get_tree().get_node("Node2D").get_node("PlayerBoat").player_health -= 1
 		test_bool = false
 		pass
 	#if(last_tile_num != 2):
